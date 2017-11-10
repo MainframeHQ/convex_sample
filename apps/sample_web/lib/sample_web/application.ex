@@ -6,6 +6,8 @@ defmodule SampleWeb.Application do
   def start(_type, _args) do
     import Supervisor.Spec
 
+    :ets.new(:web_sessions, [:named_table, :public, read_concurrency: true])
+
     children = [
       supervisor(SampleWeb.Endpoint, []),
     ]

@@ -1,3 +1,15 @@
-<div>
-  <h4>Join</h4>
-</div>
+<h2>Join Room</h2>
+<h3>Logged in as <%= @profile.name %></h3>
+
+<%= form_for @conn, page_path(@conn, :chat), [as: :room], fn f -> %>
+  <div class="form-group">
+    <label>Room Name</label>
+    <%= text_input f, :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Join", class: "btn btn-primary" %>
+  </div>
+
+  <a href="<%= page_path(SampleWeb.Endpoint, :logout) %>">Logout</a>
+<% end %>

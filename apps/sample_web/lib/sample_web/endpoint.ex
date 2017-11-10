@@ -16,7 +16,7 @@ defmodule SampleWeb.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
+    socket "/phoenix/live_reload/socket/websocket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
   end
@@ -36,9 +36,9 @@ defmodule SampleWeb.Endpoint do
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
-    store: :cookie,
-    key: "_sample_web_key",
-    signing_salt: "poORjz/c"
+    store: :ets,
+    key: "sid",
+    table: :web_sessions
 
   plug SampleWeb.Router
 
@@ -56,4 +56,6 @@ defmodule SampleWeb.Endpoint do
       {:ok, config}
     end
   end
+
+
 end

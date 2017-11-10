@@ -17,11 +17,11 @@ Provides operations:
       - `name` (`String.t`)
       - `nick` (`String.t`)
 
-    Returns the id.
+    Returns the created profile as a map.
 
   - `directory.lookup`:
 
     Arguments:
       - `id` (`String.t`)
 
-    Returns a map.
+    Returns the profile as a map.

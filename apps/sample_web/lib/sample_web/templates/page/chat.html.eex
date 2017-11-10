@@ -1,3 +1,19 @@
-<div>
-  <h4>Chat</h4>
+<h2>Chat Room <%= @room_name %></h2>
+<h3>Logged in as <%= @profile.name %></h3>
+<a href="<%= page_path(SampleWeb.Endpoint, :join) %>">Leave</a>
+<div id="messages" class="container">
 </div>
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <input id="message-input" class="form-control" />
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  window.channelToken = "<%= @channel_token %>";
+  window.roomName = "<%= @room_name %>";
+</script>
+<script src="<%= static_path(@conn, "/js/app.js") %>"></script

@@ -10,10 +10,15 @@ config :sample_web, SampleWeb.Endpoint,
     port: 4000,
     dispatch: [
       {:_, [
+        # We need to declare dispatchers manually to have a raw coboy websocket...
         {"/api/ws", SampleWeb.Websocket.Handler, []},
+        {"/socket/websocket", Phoenix.Endpoint.CowboyWebSocket, {Phoenix.Transports.WebSocket, {SampleWeb.Endpoint, SampleWeb.UserSocket, :websocket}}},
+        {"/phoenix/live_reload/socket/websocket", Phoenix.Endpoint.CowboyWebSocket, {Phoenix.Transports.WebSocket, {SampleWeb.Endpoint, Phoenix.LiveReloader.Socket, :websocket}}},
         {:_, Plug.Adapters.Cowboy.Handler, {SampleWeb.Endpoint, []}}
       ]}
     ],
+
+
   ],
   debug_errors: true,
   code_reloader: true,
@@ -38,11 +43,3 @@ config :logger, :console,
 
 config :sample_web, :generators,
   context_app: :sample
-
-config :sample_web, SampleWeb.Endpoint,
-  http: [port: 4000],
-  debug_errors: true,
-  code_reloader: true,
-  check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]

@@ -11,18 +11,45 @@ defmodule SampleWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :auth do
+    plug SampleWeb.Plug.ConvexAuth
+  end
+
+  pipeline :channel_setup do
+    plug :put_channel_token
+  end
+
   scope "/", SampleWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser]
+    get  "/register", PageController, :register
+    post "/register", PageController, :register_callback
+    get  "/login",  PageController, :login
+    post "/login",  PageController, :login_callback
+  end
 
-    get "/", PageController, :index
+  scope "/", SampleWeb do
+    pipe_through [:browser, :auth]
+    get  "/", PageController, :join
+    get  "/logout", PageController, :logout
+  end
 
-    get "/register", PageController, :register
+  scope "/", SampleWeb do
+    pipe_through [:browser, :auth, :channel_setup]
+    post "/chat", PageController, :chat
+  end
 
-    get "/login", PageController, :login
 
-    get "/join", PageController, :join
+  #===========================================================================
+  # Internal functions
+  #===========================================================================
 
-    get "/chat", PageController, :chat
+  defp put_channel_token(conn, _) do
+    if user_id = get_session(conn, :context)[:auth] do
+      token = Phoenix.Token.sign(conn, "user socket", user_id)
+      assign(conn, :channel_token, token)
+    else
+      conn
+    end
   end
 
 end

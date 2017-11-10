@@ -60,8 +60,9 @@ defmodule SampleDirectory.Directory do
     case :ets.lookup(@id_to_profile, id) do
       [_] -> {:error, :already_exists}
       [] ->
-        :ets.insert(@id_to_profile, {id, %{name: name, nick: nick}})
-        {:ok, id}
+        profile = %{name: name, nick: nick}
+        :ets.insert(@id_to_profile, {id, profile})
+        {:ok, profile}
     end
   end
 
