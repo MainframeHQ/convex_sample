@@ -110,7 +110,7 @@ defmodule SampleAuth.Server do
 
   defp generate_user_id() do
     :crypto.strong_rand_bytes(16)
-    |> Base.url_encode64()
+      |> Base.url_encode64()
   end
 
 

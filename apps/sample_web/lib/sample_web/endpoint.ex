@@ -57,5 +57,4 @@ defmodule SampleWeb.Endpoint do
     end
   end
 
-
 end

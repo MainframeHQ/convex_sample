@@ -8,7 +8,7 @@ so restarting the service will lose all the data.
 Operations requires an authenticated context.
 
 This application showcases:
-  - basic access right managment.
+  - basic access right management.
   - proxy binding to notify another service.
   - operation producing multiple results.
   - operations spawning processes if required.

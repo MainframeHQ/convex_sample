@@ -6,7 +6,7 @@ All the data is stored in a named ETS table and will be lost after a restart.
 
 This application showcases:
   - operations handled in the calling process.
-  - basic access right managment.
+  - basic access right management.
 
 Provides operations:
 

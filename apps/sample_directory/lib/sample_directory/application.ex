@@ -1,6 +1,7 @@
 defmodule SampleDirectory.Application do
   @moduledoc false
 
+
   #===========================================================================
   # Includes
   #===========================================================================
@@ -19,4 +20,5 @@ defmodule SampleDirectory.Application do
     opts = [strategy: :one_for_one, name: SampleDirectory.Supervisor]
     Supervisor.start_link([], opts)
   end
+
 end

@@ -4,9 +4,9 @@ class Chat {
     var $messages  = $("#messages")
     var $input     = $("#message-input")
 
-    socket.onOpen( ev => console.log("OPEN", ev) )
-    socket.onError( ev => console.log("ERROR", ev) )
-    socket.onClose( e => console.log("CLOSE", e) )
+    socket.onOpen(e => console.log("OPEN", e))
+    socket.onError(e => console.log("ERROR", e))
+    socket.onClose(e => console.log("CLOSE", e))
 
     socket.connect()
 
@@ -47,7 +47,7 @@ class Chat {
     let nick = this.sanitize(msg.nick)
     let body = this.sanitize(msg.body)
 
-    return(`<p><a href='#'>[${nick}]</a>&nbsp; ${body}</p>`)
+    return(`<p><strong>[${nick}]</strong>&nbsp; ${body}</p>`)
   }
 
 }

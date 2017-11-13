@@ -15,6 +15,7 @@ defmodule SampleDirectory do
 
   def delegate("*"), do: SampleDirectory.Directory
 
+
   def validate("directory.add", %{id: id, name: n, nick: a})
     when is_binary(id) and is_binary(n) and is_binary(a), do: :ok
 

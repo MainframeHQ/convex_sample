@@ -30,6 +30,7 @@ defmodule SampleWeb.Router do
   scope "/", SampleWeb do
     pipe_through [:browser, :auth]
     get  "/", PageController, :join
+    get  "/chat", PageController, :join
     get  "/logout", PageController, :logout
   end
 

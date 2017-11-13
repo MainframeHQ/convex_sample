@@ -14,6 +14,7 @@ defmodule SampleAuth do
 
   def delegate("*"), do: SampleAuth.Server
 
+
   def validate("auth.register", %{username: u, password: p})
     when is_binary(u) and is_binary(p), do: :ok
 

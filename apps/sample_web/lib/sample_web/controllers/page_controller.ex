@@ -16,7 +16,7 @@ defmodule SampleWeb.PageController do
   #===========================================================================
 
   def register(conn, _params) do
-    render conn, "register.html"
+    render(conn, "register.html")
   end
 
 
@@ -25,40 +25,41 @@ defmodule SampleWeb.PageController do
       "password" => password,
       "name" => name,
       "nick" => nick,
-      } = info
+    } = info
+
     cond do
       username == "" ->
         conn
-        |> put_flash(:info, "Wrong username")
-        |> render("register.html")
+          |> put_flash(:info, "Wrong username")
+          |> render("register.html")
       password == "" ->
         conn
-        |> put_flash(:info, "Wrong password")
-        |> render("register.html")
+          |> put_flash(:info, "Wrong password")
+          |> render("register.html")
       name == "" ->
         conn
-        |> put_flash(:info, "Wrong name")
-        |> render("register.html")
+          |> put_flash(:info, "Wrong name")
+          |> render("register.html")
       nick == "" ->
         conn
-        |> put_flash(:info, "Wrong nick")
-        |> render("register.html")
+          |> put_flash(:info, "Wrong nick")
+          |> render("register.html")
       true ->
         case do_register(username, password, name, nick) do
           {:error, :username_already_exists} ->
             conn
-            |> put_flash(:info, "Username already exists")
-            |> render("register.html")
+              |> put_flash(:info, "Username already exists")
+              |> render("register.html")
           {:error, reason} ->
             conn
-            |> put_flash(:info, "Registration error: #{inspect reason}")
-            |> render("register.html")
+              |> put_flash(:info, "Registration error: #{inspect reason}")
+              |> render("register.html")
           {:ok, {ctx, profile}} ->
             conn
-            |> put_session(:profile, profile)
-            |> put_session(:context, ctx)
-            |> put_flash(:info, "Logged in")
-            |> redirect(to: "/")
+              |> put_session(:profile, profile)
+              |> put_session(:context, ctx)
+              |> put_flash(:info, "Logged in")
+              |> redirect(to: "/")
         end
     end
   end
@@ -74,14 +75,14 @@ defmodule SampleWeb.PageController do
     case do_login(username, password) do
       {:error, _reason} ->
         conn
-        |> put_flash(:info, "Wrong username or password")
-        |> render("login.html")
+          |> put_flash(:info, "Wrong username or password")
+          |> render("login.html")
       {:ok, {ctx, profile}} ->
         conn
-        |> put_session(:profile, profile)
-        |> put_session(:context, ctx)
-        |> put_flash(:info, "Logged in")
-        |> redirect(to: "/")
+          |> put_session(:profile, profile)
+          |> put_session(:context, ctx)
+          |> put_flash(:info, "Logged in")
+          |> redirect(to: "/")
     end
   end
 
@@ -100,9 +101,9 @@ defmodule SampleWeb.PageController do
 
   def logout(conn, _params) do
     conn
-    |> clear_session()
-    |> put_flash(:info, "Logged out")
-    |> redirect(to: "/")
+      |> clear_session()
+      |> put_flash(:info, "Logged out")
+      |> redirect(to: "/")
   end
 
 

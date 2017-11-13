@@ -29,8 +29,8 @@ defmodule SampleWeb.UserSocket do
           {:ok, {ctx, profile}} ->
             socket =
               socket
-              |> assign(:profile, profile)
-              |> assign(:context, ctx)
+                |> assign(:profile, profile)
+                |> assign(:context, ctx)
             {:ok, socket}
         end
     end
