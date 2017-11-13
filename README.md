@@ -5,7 +5,7 @@ It has multiple front-ends, text-based interface over raw websocket and a web-ba
 
 ## Usage
 
-To try out this project, follow the [README](https://github.com/thusfresh/convex_sample/blob/master/apps/sample_web/README.md) of the [`SampleWeb`](https://github.com/thusfresh/convex_sample/blob/master/apps/sample_web) application.
+To try out this project, follow the [README](https://github.com/thusfresh/convex_sample/blob/master/apps/sample_web/README.md) of the [SampleWeb](https://github.com/thusfresh/convex_sample/blob/master/apps/sample_web) application.
 
 You can found out more about the implemented applications in their respective README files:
 
